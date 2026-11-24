@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Jeffry Casipe — Portfolio</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@600;800&family=Instrument+Sans:wght@400;500;600&display=swap">
+<style>
+:root{
+  --bg:#f6efe3;--surface:#fffaf0;--ink:#0b2239;--muted:#51647a;--line:#dccfb8;
+  --sea:#0e7c86;--on-sea:#ffffff;--sun:#ffb627;--on-sun:#0b2239;
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){--bg:#0b1b2b;--surface:#11273b;--ink:#f3ead8;--muted:#9fb2c4;--line:#23415a;--sea:#4cc9d1;--on-sea:#07202b;--sun:#ffc857;--on-sun:#0b1b2b}
+}
+:root[data-theme="dark"]{--bg:#0b1b2b;--surface:#11273b;--ink:#f3ead8;--muted:#9fb2c4;--line:#23415a;--sea:#4cc9d1;--on-sea:#07202b;--sun:#ffc857;--on-sun:#0b1b2b}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(72px + env(safe-area-inset-top,0px))}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Instrument Sans',system-ui,sans-serif;line-height:1.65;font-size:1.05rem}
+h1,h2,h3{font-family:Syne,system-ui,sans-serif;margin:0;line-height:1.02}
+.wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+a:focus-visible,button:focus-visible{outline:3px solid var(--sun);outline-offset:3px}
+
+/* nav */
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{font-family:Syne,sans-serif;font-weight:800;font-size:1.2rem;color:var(--ink);text-decoration:none}
+.links{display:flex;align-items:center;gap:22px}
+.links a{color:var(--ink);text-decoration:none;font-weight:500}
+.links a:hover{color:var(--sea)}
+#theme{width:40px;height:40px;border-radius:50%;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer;font-size:1.1rem}
+#theme:hover{border-color:var(--sun)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:30}
+
+/* hero */
+.hero{padding:72px 0 56px}
+.hero .wrap{display:grid;grid-template-columns:1.3fr 1fr;gap:48px;align-items:center}
+.hero h1{font-size:clamp(3rem,9vw,7rem);font-weight:800;letter-spacing:-.04em}
+.line{display:block;overflow:hidden;padding-bottom:.08em}
+.line span{display:block;animation:rise .9s cubic-bezier(.2,.8,.2,1) both}
+.line:nth-child(2) span{animation-delay:.12s;color:var(--sea)}
+@keyframes rise{from{transform:translateY(105%)}to{transform:none}}
+.intro{max-width:34em;font-size:1.25rem;color:var(--muted);margin:28px 0 32px}
+.btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-block;padding:14px 24px;border-radius:999px;font-weight:600;text-decoration:none;border:2px solid var(--ink);color:var(--ink)}
+.btn.primary{background:var(--sun);border-color:var(--sun);color:var(--on-sun)}
+.btn:hover{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.wave{display:block;width:100%;height:80px;fill:var(--sea)}
+
+/* profile photo */
+.photo{position:relative;width:min(320px,80%);aspect-ratio:4/5;justify-self:center}
+.photo::before{content:"";position:absolute;inset:0;transform:translate(16px,16px);background:var(--sun);border-radius:200px 200px 24px 24px}
+.photo .initials,.photo img{position:absolute;inset:0;width:100%;height:100%;border-radius:200px 200px 24px 24px}
+.photo .initials{display:grid;place-items:center;background:var(--sea);color:var(--on-sea);font-family:Syne,sans-serif;font-weight:800;font-size:5rem}
+.photo img{object-fit:cover;display:block}
+@media(max-width:760px){
+  .hero .wrap{grid-template-columns:1fr;gap:40px}
+  .photo{width:min(260px,70%)}
+}
+
+/* sections */
+section{padding:84px 0}
+h2{font-size:clamp(2rem,5vw,3.2rem);font-weight:800;margin-bottom:32px;letter-spacing:-.02em}
+.about{background:var(--sea);color:var(--on-sea)}
+.about .grid{display:grid;grid-template-columns:1.2fr 1fr;gap:48px}
+.about p{margin:0 0 16px;max-width:36em}
+.skills{display:flex;flex-wrap:wrap;gap:10px;margin:0;padding:0;list-style:none;align-content:flex-start}
+.skills li{padding:8px 18px;border-radius:999px;background:var(--on-sea);color:var(--sea);font-weight:600}
+@media(max-width:720px){.about .grid{grid-template-columns:1fr}}
+
+/* projects */
+.projects{border-top:2px solid var(--ink)}
+.project{display:grid;grid-template-columns:1fr auto;gap:12px 24px;align-items:center;padding:32px 20px;border-bottom:1px solid var(--line);color:var(--ink);text-decoration:none;transition:background .25s,color .25s,padding .25s}
+.project h3{font-size:clamp(1.6rem,4vw,2.4rem);font-weight:800}
+.project p{margin:8px 0 0;color:var(--muted);max-width:38em;transition:color .25s}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 0;padding:0;list-style:none}
+.tags li{font-size:.9rem;font-weight:600;padding:3px 12px;border:1.5px solid currentColor;border-radius:999px;color:var(--sea);transition:color .25s}
+.gh{width:56px;height:56px;border-radius:50%;background:var(--ink);color:var(--bg);display:grid;place-items:center;transition:background .25s,color .25s,transform .25s}
+.gh svg{width:28px;height:28px;fill:currentColor}
+.project:hover,.project:focus-visible{background:var(--sea);color:var(--on-sea);padding-left:36px}
+.project:hover p,.project:hover .tags li,.project:focus-visible p,.project:focus-visible .tags li{color:var(--on-sea)}
+.project:hover .gh,.project:focus-visible .gh{background:var(--sun);color:var(--on-sun);transform:rotate(-12deg) scale(1.08)}
+@media(max-width:560px){.gh{width:44px;height:44px}.project{padding:24px 12px}}
+
+/* footer */
+footer{background:var(--ink);color:var(--bg);padding:84px 0 64px}
+footer h2{margin-bottom:16px}
+footer a.mail{font-family:Syne,sans-serif;font-weight:800;font-size:clamp(1.4rem,5vw,2.6rem);color:var(--sun);text-decoration:none;word-break:break-all}
+footer a.mail:hover{text-decoration:underline}
+footer p{margin:24px 0 0;opacity:.7}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .line span{animation:none}
+  .project,.gh,.project p,.tags li{transition:none}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="logo" href="#top">JC</a>
+    <div class="links">
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+      <button id="theme" type="button" aria-label="Switch light or dark mode">◐</button>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <h1>
+        <span class="line"><span>Jeffry</span></span>
+        <span class="line"><span>Casipe</span></span>
+      </h1>
+      <p class="intro">Web developer from West Visayas State University - Lambunao Campus. I build simple, useful websites and keep all the code on GitHub.</p>
+      <div class="btns">
+        <a class="btn primary" href="#projects">See my projects</a>
+        <a class="btn" href="https://github.com/Jeffrycasipe" target="_blank" rel="noopener">My GitHub</a>
+      </div>
+    </div>
+
+    <!-- Put your photo in the same folder and name it photo.jpg -->
+    <div class="photo">
+      <div class="initials" aria-hidden="true">JC</div>
+      <img src="profile.png" alt="Photo of Jeffry Casipe" onerror="this.style.display='none'">
+    </div>
+  </div>
+</header>
+
+<svg class="wave" viewBox="0 0 1200 80" preserveAspectRatio="none" aria-hidden="true">
+  <path d="M0 40 C150 0 300 80 450 40 S750 0 900 40 S1100 70 1200 30 V80 H0 Z"/>
+</svg>
+
+<section class="about" id="about">
+  <div class="wrap grid">
+    <div>
+      <h2>About me</h2>
+      <p>I’m a AI Developer  student and self-taught developer. I like turning small ideas into working projects, and I’m always learning something new.</p>
+      <p>Right now I’m looking for internships and freelance work.</p>
+    </div>
+    <ul class="skills">
+      <li>HTML &amp; CSS</li><li>JavaScript</li><li>PHP</li><li>Python</li><li>Git &amp; GitHub</li>
+    </ul>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <h2>Projects</h2>
+    <div class="projects">
+
+      <a class="project" href="https://github.com/Jeffrycasipe/pigobao" target="_blank" rel="noopener">
+        <div>
+          <h3>PIGOBAO</h3>
+          <p>PIGOBAO System is a web-based platform designed to manage farmer-beneficiary records, livestock distribution, and monitoring activities. It provides administrators and field technicians with organized records, monitoring reports, and descriptive analytics to track livestock status, distribution progress, and program success rates for better decision-making.</p>
+          <ul class="tags"><li>JavaScript</li><li>HTML</li><li>CSS</li><li>PHP</li>
+        </div>
+        <span class="gh" aria-label="Open on GitHub">
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+        </span>
+      </a>
+
+      <a class="project" href="https://github.com/Jeffrycasipe/luandrysystem" target="_blank" rel="noopener">
+        <div>
+          <h3>LAUNDRY SYSTEM </h3>
+          <p>Fresh Press Laundry System is a web-based platform designed to manage laundry and ironing services, customer records, online bookings, and scheduling. It helps customers conveniently book laundry services while allowing administrators and shop owners to manage orders, monitor transactions, and organize daily operations efficiently.</p>
+          <ul class="tags"><li>PHP</li><li>API</li><li>Html</li></ul>
+        </div>
+        <span class="gh" aria-label="Open on GitHub">
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+        </span>
+      </a>
+
+      <a class="project" href="https://github.com/Jeffrycasipe/online-library-" target="_blank" rel="noopener">
+        <div>
+          <h3>ONLINE LIBRARY </h3>
+          <p>Online Library System is a web-based platform designed to manage books, student records, and borrowing transactions. It allows users to search and access available books while enabling administrators to organize library collections, monitor borrowed and returned books, and manage library operations efficiently.</p>
+          <ul class="tags"><li>Html</li><li>MSQL</li></ul>
+        </div>
+        <span class="gh" aria-label="Open on GitHub">
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+        </span>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <h2>Let’s work together</h2>
+    <a class="mail" href="mailto:jeffrycasipe8@gmail.com">jeffrycasipe8@gmail.com</a>
+    <p>Based in Bingawan, Iloilo, Philippines.</p>
+  </div>
+</footer>
+
+<script>
+  // Light/dark toggle
+  var root = document.documentElement;
+  document.getElementById('theme').addEventListener('click', function () {
+    var isDark = root.getAttribute('data-theme') === 'dark' ||
+      (!root.getAttribute('data-theme') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    root.setAttribute('data-theme', isDark ? 'light' : 'dark');
+  });
+</script>
+</body>
+</html>
